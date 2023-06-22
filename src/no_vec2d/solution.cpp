@@ -3,6 +3,14 @@
 #include <stdio.h>
 #include <immintrin.h>
 
+__m256d apply_exp(__m256d a) {
+    double* elements = (double*)&a;
+    for (int i = 0; i < 4; ++i) {
+        elements[i] = exp(elements[i]);
+    }
+    return a;
+}
+
 // 4. AVX ++ if else removal
 // somehow slower than 3 & 3.4.... need investigation
 void optimized_4(int np, int num_runs){
